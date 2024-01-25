@@ -12,5 +12,5 @@ jobs:
         run: sleep 300
       - name: Fail or not
         run: |
-          bc -l <<< "scale=4 ; ${RANDOM}/32767"
+          exit 1
         shell: bash
