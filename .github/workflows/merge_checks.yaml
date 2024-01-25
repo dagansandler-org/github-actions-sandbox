@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run slow CI (emulated by a long sleep)
-        run: sleep 300
+        run: sleep 30
       - name: Fail or not
         run: |
-          exit 1
+          exit 0
         shell: bash
