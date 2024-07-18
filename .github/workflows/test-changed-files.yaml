@@ -1,0 +1,45 @@
+name: Testing changed-files
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  changed-files-testing-true:
+    runs-on: ubuntu-22.04
+    env:
+      TESTING: True
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+      - name: Test
+        run: |
+            if [ "${{ steps.changed-files.outputs.any_changed }}" != "true" ]; then
+              echo "No files changed"
+              exit 1
+            else
+              echo "Files changed"
+            fi
+
+  changed-files-testing-false:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+      - name: Test
+        run: |
+            if [ "${{ steps.changed-files.outputs.any_changed }}" != "true" ]; then
+              echo "No files changed"
+              exit 1
+            else
+              echo "Files changed"
+            fi
