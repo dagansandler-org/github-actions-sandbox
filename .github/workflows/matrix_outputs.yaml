@@ -28,4 +28,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Print outputs from matrix job
-        run: echo "Matrix output: ${{ needs.matrix-job.outputs.option_output }}"
+        run: |
+          echo "Matrix output: ${{ needs.matrix-job.outputs.option_output }}"
