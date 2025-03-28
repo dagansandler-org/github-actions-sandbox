@@ -10,7 +10,7 @@ jobs:
       matrix:
         option: ['a', 'b', 'c']
     outputs:
-      option_${{ matrix.option }}: ${{ steps.set_output.option_output }}
+      ${{ steps.set_output.outputs }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
