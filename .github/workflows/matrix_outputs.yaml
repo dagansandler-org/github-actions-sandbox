@@ -2,6 +2,16 @@ name: Matrix Job Example
 
 on:
   workflow_dispatch:
+    inputs:
+      option:
+        description: |
+          This is a description for the parameter
+          It uses multiple lines
+
+          and even `line` skips
+        default: "a"
+        required: false
+        
 
 jobs:
   matrix-job:
