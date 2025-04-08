@@ -8,25 +8,39 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        option: ['a', 'b', 'c']
-    outputs:
-      ${{ steps.set_output.outputs }}
+        x: ['1', '2']
+        y: ['a', 'b']
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Echo option value
         run: echo "The option is ${{ matrix.option }}"
         id: echo_step
-      - name: Set output
-        run: echo "option_output=${{ matrix.option }}" >> $GITHUB_OUTPUT
-        id: set_output
 
-  consume-output-job:
+
+  matrix2-job:
     runs-on: ubuntu-latest
-    needs: matrix-job
+    strategy:
+      matrix:
+        x: ['1', '2']
+        include:
+          - x: '1'
+            y: 'a'
+          - x: '2'
+            y: 'b'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Print outputs from matrix job
-        run: |
-          echo "Matrix output: ${{ needs.matrix-job.outputs.option_output }}"
+      - name: Echo option value
+        run: echo "The option is ${{ matrix.option }}"
+        id: echo_step
+
+  matrix3-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - x: '1'
+            y: 'a'
+          - x: '2'
+            y: 'b'
+    steps:
+      - name: Echo option value
+        run: echo "The option is ${{ matrix.option }}"
+        id: echo_step
