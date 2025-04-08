@@ -6,9 +6,8 @@ on:
       option:
         description: |
           This is a description for the parameter
-          It uses multiple lines
-
-          and even `line` skips
+          <br>
+          It uses multiple lines maybe
         default: "a"
         required: false
         
