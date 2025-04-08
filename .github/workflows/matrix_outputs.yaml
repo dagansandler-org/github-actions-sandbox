@@ -6,8 +6,12 @@ on:
       option:
         description: |
           This is a description for the parameter
-          <br>
-          It uses multiple lines maybe
+          It 
+          uses 
+          multiple 
+          
+          lines 
+          maybe
         default: "a"
         required: false
         
